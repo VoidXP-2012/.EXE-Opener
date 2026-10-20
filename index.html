@@ -3,33 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vs. Impostor Legacy Client</title>
+    <title>Web Client App Terminal</title>
     <style>
-        /* Erases page borders and frames to act like a true game console application */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #000000;
+        body {
+            margin: 0; padding: 0; background-color: #0d1117;
+            color: #c9d1d9; font-family: system-ui, sans-serif;
+            display: flex; justify-content: center; align-items: center; height: 100vh;
         }
-        /* Forces the active game window to stretch perfectly to all edges of the monitor */
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
+        .console-box {
+            text-align: center; background-color: #161b22;
+            padding: 30px; border-radius: 12px; border: 1px solid #30363d;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5); width: 90%; max-width: 400px;
         }
+        input {
+            width: 100%; padding: 12px; margin: 15px 0;
+            background-color: #0d1117; border: 1px solid #30363d;
+            color: #fff; border-radius: 6px; box-sizing: border-box;
+        }
+        button {
+            width: 100%; padding: 12px; background-color: #238636;
+            color: white; border: none; border-radius: 6px;
+            font-weight: bold; cursor: pointer; font-size: 1rem;
+        }
+        button:hover { background-color: #2ea44f; }
     </style>
 </head>
 <body>
 
-    <!-- Direct embed using an independent, unblocked game content network -->
-    <iframe 
-        src="https://amazonaws.com"
-        allow="autoplay; keyboard; gamepad; fullscreen;"
-        sandbox="allow-same-origin allow-scripts allow-forms allow-modals">
-    </iframe>
+    <div class="console-box">
+        <h3>App Link Initializer</h3>
+        <p style="font-size: 0.85rem; color: #8b949e;">Launches external engines bypassing iframe black-screen blocks.</p>
+        
+        <input type="text" id="target-link" placeholder="Enter game or site URL...">
+        <button onclick="launchApp()">Launch Standalone Window</button>
+    </div>
+
+    <script>
+        function launchApp() {
+            let url = document.getElementById('target-link').value.trim();
+            if (!url) return alert('Please enter a link first!');
+            
+            // Auto-corrects URL format
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
+            
+            // Boots the site in a dedicated standalone app-frame popup bypassing CORS
+            window.open(url, '_blank', 'noopener,noreferrer,width=1280,height=720,menubar=no,status=no,toolbar=no');
+        }
+    </script>
 
 </body>
+</html>
