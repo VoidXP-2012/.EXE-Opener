@@ -3,64 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vs. Impostor Legacy Launcher</title>
+    <title>Vs. Impostor Legacy Web Console</title>
     <style>
-        body {
-            background-color: #0b0e14;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        /* Erases page borders and frames to create a true app layout */
+        html, body {
             margin: 0;
-            overflow: hidden;
-        }
-        .container {
-            text-align: center;
-            background: #161b22;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-            border: 1px solid #30363d;
-            max-width: 400px;
+            padding: 0;
             width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000000;
         }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #ff3e3e;
-        }
-        p {
-            color: #8b949e;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-        .launch-btn {
-            display: inline-block;
-            background-color: #238636;
-            color: white;
-            text-decoration: none;
-            padding: 15px 32px;
-            font-weight: bold;
-            border-radius: 6px;
-            transition: background 0.2s, transform 0.1s;
-            box-shadow: 0 4px 12px rgba(35,134,54,0.3);
-        }
-        .launch-btn:hover {
-            background-color: #2ea043;
-            transform: translateY(-2px);
-        }
-        .launch-btn:active {
-            transform: translateY(0);
+        /* Forces the web engine port frame to lock to full-screen bounds */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Vs. Impostor Legacy</h1>
-        <p>Your web-based desktop companion launcher.</p>
-        <a href="https://kbhgames.com/game/fnf-vs-impostor-legacy" class="launch-btn" target="_blank">LAUNCH GAME NOW</a>
-    </div>
+
+    <!-- Direct framework embed of the active community port layout -->
+    <iframe 
+        src="https://gamedistribution.com" 
+        allow="autoplay; keyboard; gamepad; fullscreen;" 
+        sandbox="allow-same-origin allow-scripts allow-forms allow-modals">
+    </iframe>
+
 </body>
 </html>
