@@ -3,53 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Client App Terminal</title>
+    <title>Vs. Impostor Legacy Execution Client</title>
     <style>
-        body {
-            margin: 0; padding: 0; background-color: #0d1117;
-            color: #c9d1d9; font-family: system-ui, sans-serif;
-            display: flex; justify-content: center; align-items: center; height: 100vh;
+        /* Erases browser boundaries to establish a native app environment */
+        html, body {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden; background-color: #0d1117; font-family: 'Segoe UI', sans-serif;
+            display: flex;
         }
-        .console-box {
-            text-align: center; background-color: #161b22;
-            padding: 30px; border-radius: 12px; border: 1px solid #30363d;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5); width: 90%; max-width: 400px;
+        /* App Control Sidebar */
+        .sidebar {
+            width: 260px; background-color: #161b22; height: 100%;
+            border-right: 2px solid #30363d; display: flex; flex-direction: column;
+            box-sizing: border-box; padding: 20px;
         }
-        input {
-            width: 100%; padding: 12px; margin: 15px 0;
-            background-color: #0d1117; border: 1px solid #30363d;
-            color: #fff; border-radius: 6px; box-sizing: border-box;
+        .sidebar h2 { color: #58a6ff; font-size: 1.2rem; margin-top: 0; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .sidebar p { color: #8b949e; font-size: 0.85rem; margin-bottom: 25px; line-height: 1.4; }
+        .nav-btn {
+            background-color: #21262d; color: #c9d1d9; border: 1px solid #30363d;
+            padding: 12px; margin-bottom: 10px; border-radius: 6px; cursor: pointer;
+            font-weight: bold; text-align: left; transition: 0.2s ease;
         }
-        button {
-            width: 100%; padding: 12px; background-color: #238636;
-            color: white; border: none; border-radius: 6px;
-            font-weight: bold; cursor: pointer; font-size: 1rem;
-        }
-        button:hover { background-color: #2ea44f; }
+        .nav-btn:hover { background-color: #30363d; color: #fff; border-color: #8b949e; }
+        .active-btn { background-color: #238636 !important; color: white !important; border-color: #2ea44f !important; }
+        
+        /* Central Virtualization Canvas Container Window */
+        .canvas-container { flex: 1; height: 100%; background-color: #000; position: relative; }
+        iframe { width: 100%; height: 100%; border: none; display: block; }
     </style>
 </head>
 <body>
 
-    <div class="console-box">
-        <h3>App Link Initializer</h3>
-        <p style="font-size: 0.85rem; color: #8b949e;">Launches external engines bypassing iframe black-screen blocks.</p>
+    <!-- Native App Controller Board -->
+    <div class="sidebar">
+        <h2>System Engine</h2>
+        <p>Run Windows applications on ChromeOS using distributed cloud rendering environments.</p>
         
-        <input type="text" id="target-link" placeholder="Enter game or site URL...">
-        <button onclick="launchApp()">Launch Standalone Window</button>
+        <button class="nav-btn active-btn" onclick="switchEngine('https://neverinstall.dev')">Launch Cloud Engine (.EXE)</button>
+        <button class="nav-btn" onclick="switchEngine('https://github.io')">HTML5 Port Mirror</button>
+        <button class="nav-btn" onclick="switchEngine('https://kbhgames.com')">Web Arcade Backup</button>
+    </div>
+
+    <!-- Active Visualization Window Frame -->
+    <div class="canvas-container">
+        <iframe id="app-viewport" src="https://neverinstall.dev" allow="autoplay; keyboard; gamepad; fullscreen; clipboard-read; clipboard-write;"></iframe>
     </div>
 
     <script>
-        function launchApp() {
-            let url = document.getElementById('target-link').value.trim();
-            if (!url) return alert('Please enter a link first!');
+        // Smooth engine switching routine without losing framework integrity
+        function switchEngine(url) {
+            document.getElementById('app-viewport').src = url;
             
-            // Auto-corrects URL format
-            if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                url = 'https://' + url;
-            }
-            
-            // Boots the site in a dedicated standalone app-frame popup bypassing CORS
-            window.open(url, '_blank', 'noopener,noreferrer,width=1280,height=720,menubar=no,status=no,toolbar=no');
+            // Manage visual state highlights
+            let buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active-btn'));
+            event.currentTarget.classList.add('active-btn');
         }
     </script>
 
